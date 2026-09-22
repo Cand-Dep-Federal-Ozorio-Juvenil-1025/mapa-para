@@ -129,7 +129,7 @@
           • Cada item também tem sua própria caixa, para marcar/desmarcar individualmente.<br>
           • Toque em qualquer polígono colorido no mapa para ver nome, categoria e área.<br>
           • Use a busca em cada seção para achar um nome rapidamente.<br>
-          • Troque o mapa de fundo (Escuro/Satélite/Ruas) no ícone de camadas, no canto superior direito do mapa.
+          • Troque o mapa de fundo (Satélite/Ruas) no ícone de camadas, no canto superior direito do mapa.
         </p>
       </details>
     </div>
@@ -217,11 +217,10 @@ const paData  = {"type":"FeatureCollection","features":[{"type":"Feature","prope
 
 const map = L.map('map', { zoomControl:true, attributionControl:false });
 
-const baseDark = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', { maxZoom: 18 });
 const baseSat  = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { maxZoom: 18 });
 const baseRuas = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19 });
-baseDark.addTo(map);
-L.control.layers({ "Escuro": baseDark, "Satélite": baseSat, "Ruas": baseRuas }, null, { position:'topright', collapsed:true }).addTo(map);
+baseSat.addTo(map);
+L.control.layers({ "Satélite": baseSat, "Ruas": baseRuas }, null, { position:'topright', collapsed:true }).addTo(map);
 
 const layerPara = L.geoJSON(paData, { style: { color:'#EAF4EE', weight:3, fillColor:'#EAF4EE', fillOpacity:0.03 } }).addTo(map);
 map.fitBounds(layerPara.getBounds(), { padding:[20,20] });
